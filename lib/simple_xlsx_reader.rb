@@ -180,16 +180,17 @@ module SimpleXlsxReader
       # and check the column name of the last header row. Obviously this isn't
       # the most robust strategy, but it likely fits 99% of use cases
       # considering it's not a problem with actual excel docs.
-      def last_column(xsheet)
-        dimension = xsheet.at_xpath('/xmlns:worksheet/xmlns:dimension')
-        if dimension
-          col = dimension.attributes['ref'].value.match(/:([A-Z]*)[1-9]*/)
-          col ? col.captures.first : 'A'
-        else
-          last = xsheet.at_xpath("/xmlns:worksheet/xmlns:sheetData/xmlns:row/xmlns:c[last()]")
-          last ? last.attributes['r'].value.match(/([A-Z]*)[1-9]*/).captures.first : 'A'
-        end
-      end
+      
+      # def last_column(xsheet)
+      #   dimension = xsheet.at_xpath('/xmlns:worksheet/xmlns:dimension')
+      #   if dimension
+      #     col = dimension.attributes['ref'].value.match(/:([A-Z]*)[1-9]*/)
+      #     col ? col.captures.first : 'A'
+      #   else
+      #     last = xsheet.at_xpath("/xmlns:worksheet/xmlns:sheetData/xmlns:row/xmlns:c[last()]")
+      #     last ? last.attributes['r'].value.match(/([A-Z]*)[1-9]*/).captures.first : 'A'
+      #   end
+      # end
 
 
       # Excel doesn't record types for some cells, only its display style, so
