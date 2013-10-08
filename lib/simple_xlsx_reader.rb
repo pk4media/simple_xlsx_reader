@@ -75,7 +75,7 @@ module SimpleXlsxReader
         self.new.tap do |xml|
           SimpleXlsxReader::Zip.open(file_path) do |zip|
             xml.workbook       = Nokogiri::XML(zip.read('workbook.xml'))
-            xml.styles         = Nokogiri::XML(zip.read('styles.xml'))
+            xml.styles         = Nokogiri::XML(zip.read('stylesheet.xml'))
 
             # optional feature used by excel, but not often used by xlsx
             # generation libraries
